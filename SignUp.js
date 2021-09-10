@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "./Welcome.css";
 
 function SignIn({ handleToggle }) {
-  const [inputs, setInputs] = useState({ username: "", password: "" });
+  const [inputs, setInputs] = useState({
+    name: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [isError, setisError] = useState(false);
 
   const handleChange = (event) => {
@@ -29,11 +34,21 @@ function SignIn({ handleToggle }) {
         <div className="form-input-group">
           <input
             type="text"
+            name="name"
+            value={inputs.name}
+            onChange={(e) => handleChange(e)}
+            className="form-input"
+            autoFocus
+            placeholder="Full Name"
+          />
+        </div>
+        <div className="form-input-group">
+          <input
+            type="text"
             name="username"
             value={inputs.username}
             onChange={(e) => handleChange(e)}
             className="form-input"
-            autoFocus
             placeholder="Username or Email"
           />
         </div>
@@ -47,10 +62,19 @@ function SignIn({ handleToggle }) {
             placeholder="Password"
           />
         </div>
-        <button className="form-button">Sign In</button>
-        <span className="form-text">Forgot your password?</span>
-        <span className="form-text" onClick={() => handleToggle(true)}>
-          Don't have an account? Create here.
+        <div className="form-input-group">
+          <input
+            type="password"
+            name="password"
+            className="form-input"
+            value={inputs.confirmPassword}
+            onChange={(e) => handleChange(e)}
+            placeholder="Confirm Password"
+          />
+        </div>
+        <button className="form-button">Sign Up</button>
+        <span className="form-text" onClick={() => handleToggle(false)}>
+          Already have an account? Login here.
         </span>
       </form>
     </>
